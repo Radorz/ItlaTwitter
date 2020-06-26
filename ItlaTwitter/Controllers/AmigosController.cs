@@ -172,18 +172,25 @@ namespace ItlaTwitter.Controllers
         [AcceptVerbs("GET", "POST")]
         public IActionResult ReturnUser(string Añadiruser)
         {
-            var userTokens = HttpContext.Session.GetInt32("TokenUser");
+           var userTokens = HttpContext.Session.GetInt32("TokenUser");
 
             var user = _context.Usuarios.FirstOrDefault(c =>
                c.Usuario == Añadiruser);
            
             if (user != null)
             {
-              var revisaramigo= _context.Amigos.FirstOrDefault(a => a.Idenvia == userTokens && a.Idrecibe == user.Id);
-                if (revisaramigo != null)
+                var revisaramigo = _context.Amigos.FirstOrDefault(a => a.Idenvia == userTokens && a.Idrecibe == user.Id);
+
+
+                 if (revisaramigo != null)
                 {
 
                     return Json($"Ya tienes añadido este Usuario {Añadiruser}");
+
+                }
+                else if (user.Id == userTokens)
+                {
+                    return Json($"No puedes añadirte a ti mismo");
 
                 }
                 else {
