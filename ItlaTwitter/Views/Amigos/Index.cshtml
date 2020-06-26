@@ -1,0 +1,173 @@
+﻿@model ItlaTwitter.ViewModels.AmigosViewModel
+
+@{
+    ViewData["Title"] = "Amigos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card float-right text-center" style="width:25em">
+    <div class="card-header ">
+        <h5 class="card-title">Listado de Amigos <a href="" data-toggle="modal" data-target="#AñadirAmigos" class="btn btn-success ">Añadir Amigos</a></h5>
+
+    </div>
+    <div class="modal fade" id="AñadirAmigos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form method="post">
+
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="AñadirAmigos">Añadir Amigo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <p>Ingresa Nombre de Usuario</p>
+                            <input asp-for="Añadiruser" type="text" />
+                            <input asp-for="idusuario"  type="hidden" />
+                            <div class="text-center">
+                                <span asp-validation-for="Añadiruser" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" name="submit" id="AñadirA" value="AñadirA">Añadir</button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <table>
+
+        <tbody>
+            @foreach (var item in Model.Amigos)
+            {
+                <tr>
+                    <td>
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Nombre.Trim() @item.Apellido.Trim()</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                @@@item.Usuario
+                            </h6>
+                        </div>
+                    </td>
+
+                    <td class="align-content-center">
+                        <a class="btn btn-light rounded-pill" data-toggle="modal" data-target="#exampleModal2" data-id="@item.Id">Delete</a>
+                        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <form method="post">
+
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Borrar Publicacion</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <p>¿Estas seguro que quieres borrar este amigo?</p>
+                                                <input asp-for="idusuario" type="hidden"  />
+                                                <input class="hola" asp-for="BorrarAmix" type="hidden" />
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary" name="submit" id="BorrarAmix" value="BorrarAmix">Borrar</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </td>
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+
+</div>
+@if (Model.Amigos.Count == 0)
+{
+    <h3>No tienes Amigos agregados, Añade uno para ver sus publicaciones!</h3>
+}
+@foreach (var item in Model.publicacion)
+{
+
+
+    <div class="mt-3ml-lg-5 mt-3" style="align-content:flex-start; margin-left:5em;">
+        <div class="card text-left" style="width: 35rem;">
+            <div class="card-body">
+
+                <h5 class="card-title">@item.Nombre.Trim() @item.Apellido.Trim()</h5>
+
+                <h6 class="card-subtitle mb-2 text-muted">
+                    @@@item.Usuario· @item.Fecha.ToString(" dd MMMM hh:mm tt")
+                </h6>
+
+                <p>@item.Contenido</p>
+                <hr />
+                <h6 class="card-subtitle mb-2 text-center">Comentarios <i class="fa fa-comment-o" aria-hidden="true"></i></h6>
+                <ul class="list-group list-group-flush">
+
+                    @foreach (var comentario in Model.comentario)
+                    {
+                        var items = from list in comentario where list.Idpublicacion == item.Id select new { Id = list.Id, Idpublicacion = list.Idpublicacion, Contenido = list.Contenido, Comentarista = list.Comentarista }; ;
+                        @foreach (var comentario2 in items)
+                        {
+                            <li class="list-group-item"><h6 class="card-subtitle mb-2 text-muted">@@@comentario2.Comentarista</h6>@comentario2.Contenido</li>
+                        }
+
+                    }
+
+                    <li class="list-group-item">
+                        <div class="mt-1 input-group">
+                            <form method="post" id="formcom" onloadeddata="limpiarFormulario()">
+                                <label class="control-label"></label>
+                                <div class="row">
+                                    <div class="col" style="width:50rem">
+                                        <textarea name="coment" class="form-control" style=" border-radius: 25px;" placeholder="Escribe un comentario..." rows="1" id="textshare" value="" required></textarea>
+                                        <input asp-for="nuevoCom.Idpublicacion" type="hidden" value="@item.Id" />
+
+
+                                    </div>
+                                    <div class=" col align-self-end" style="width:18%"><button name="submit" type="submit" class="btn btn-primary btn-sm input-group-addon" id="comentar" value="Comentar">Comentar</button></div>
+                                </div>
+                            </form>
+                            <span class="text-danger"></span>
+                        </div>
+                    </li>
+
+                </ul>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+}
+
+
+<script src='~/js/autosize.js'></script>
+<script src='~/js/site.js'></script>
+<script>
+    autosize(document.querySelectorAll('textarea'));
+</script>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src='~/js/site.js'></script>

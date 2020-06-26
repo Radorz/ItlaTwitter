@@ -1,0 +1,111 @@
+﻿@model ItlaTwitter.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Registrar";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<link href="~/css/signin.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+<div align="center">
+    <img class="mt-5 " src="~/img/logo.png" alt="" width="72" height="72">
+</div>
+<hr />
+<div class="card bg-light">
+    <div class="card-header bg-primary text-light text-center">
+        <a asp-action="Index" class="btn btn-success">Volver</a>
+        Crear Nuevo Usuario
+    </div>
+    <article class="card-body mx-auto" style="max-width: 400px;">
+        <form method="post">
+            <div class="text-center"> <span asp-validation-for="usuario" class="text-danger"></span></div>
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input asp-for="usuario" class="form-control" placeholder="Usuario" type="text">
+            </div>
+            <div class="text-center">
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input asp-for="Nombre" class="form-control" placeholder="Nombre" type="text">
+            </div>
+            <div class="text-center">
+                <span asp-validation-for="Apellido" class="text-danger"></span>
+            </div>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input asp-for="Apellido" class="form-control" placeholder="Apellido" type="text">
+
+            </div>
+            <div class="text-center">
+                <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                </div>
+                <input asp-for="Correo" class="form-control" placeholder="Email" type="email">
+
+            </div>
+            <div class="text-center">
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                </div>
+                <select asp-for="indicetel" class="custom-select" style="max-width: 120px;">
+                    <option value="(809)" selected="">+1 (809)</option>
+                    <option value="(829)">+1 (829)</option>
+                    <option value="(849)">+1 (849)</option>
+                </select>
+                <input asp-for="Telefono" class="form-control" placeholder="Telefono" type="text">
+
+            </div>
+            <div class="text-center">
+                <span asp-validation-for="Contraseña" class="text-danger"></span>
+            </div>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input asp-for="Contraseña" class="form-control" placeholder="Crear password" type="password">
+            </div>
+            <div class="text-center">
+                <span asp-validation-for="RepeatContraseña" class="text-danger"></span>
+            </div>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input asp-for="RepeatContraseña" class="form-control" placeholder="Repetir password" type="password">
+                
+
+            </div>
+            <input type="hidden" asp-for="Estado" value="Inactivo" />
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> Crear Cuenta  </button>
+            </div>
+            <div class="alert alert-success" role="alert" style="display:@ViewBag.mostrar;">
+                <h4 class="alert-heading">Gracias Por Registrarte!</h4>
+                <p>Te hemos enviado un mail a tu correo electronico para que puedas activar tu cuenta.</p>
+                <hr>
+                <p class="mb-0">No tendras acceso a la App sin haber activado tu cuenta! Apurate.</p>
+            </div>
+            <p class="text-center">Ya tienes una cuenta? <a asp-controller="Login" asp-action="Logins">Inicia Sesión</a> </p>
+        </form>
+    </article>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
