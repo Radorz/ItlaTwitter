@@ -29,7 +29,7 @@ namespace ItlaTwitter.Controllers
             this._mapper = mapper;
         }
 
-        public IActionResult Logins()
+        public IActionResult Index()
         {
             var userTokens = HttpContext.Session.GetInt32("TokenUser");
             if (userTokens != null)
@@ -44,7 +44,7 @@ namespace ItlaTwitter.Controllers
             return View();
         }
         [HttpPost]
-        public async Task <IActionResult> Logins(LoginViewModel vm)
+        public async Task <IActionResult> Index(LoginViewModel vm)
         {
 
             ViewBag.mostrar = "none";
@@ -70,7 +70,7 @@ namespace ItlaTwitter.Controllers
 
                 } else
                 {
-                    ModelState.AddModelError("UsuarioOcontraseñaerronaea", "El usuario ingresado o contraseño estan erroneos");
+                    ModelState.AddModelError("UsuarioOcontraseñaerronaea", "El usuario ingresado o contraseña estan erroneos");
                 }
                
             }

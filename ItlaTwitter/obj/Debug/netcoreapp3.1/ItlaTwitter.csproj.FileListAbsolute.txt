@@ -342,7 +342,6 @@ C:\Users\User\Desktop\ItlaTwitter\ItlaTwitter\obj\Debug\netcoreapp3.1\ItlaTwitte
 C:\Users\User\Desktop\ItlaTwitter\ItlaTwitter\obj\Debug\netcoreapp3.1\ItlaTwitter.TagHelpers.output.cache
 C:\Users\User\Desktop\ItlaTwitter\ItlaTwitter\obj\Debug\netcoreapp3.1\ItlaTwitter.RazorCoreGenerate.cache
 C:\Users\User\Desktop\ItlaTwitter\ItlaTwitter\obj\Debug\netcoreapp3.1\Razor\Pages\_ValidationScriptsPartial.cshtml.g.cs
-C:\Users\User\Desktop\ItlaTwitter\ItlaTwitter\obj\Debug\netcoreapp3.1\Razor\Views\Amigos\Index.cshtml.g.cs
 C:\Users\User\Desktop\ItlaTwitter\ItlaTwitter\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\User\Desktop\ItlaTwitter\ItlaTwitter\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\User\Desktop\ItlaTwitter\ItlaTwitter\obj\Debug\netcoreapp3.1\Razor\Views\Login\Activador.cshtml.g.cs
@@ -365,4 +364,5 @@ C:\Users\User\Desktop\ItlaTwitter\ItlaTwitter\obj\Debug\netcoreapp3.1\staticweba
 C:\Users\User\Desktop\ItlaTwitter\ItlaTwitter\obj\Debug\netcoreapp3.1\ItlaTwitter.dll
 C:\Users\User\Desktop\ItlaTwitter\ItlaTwitter\obj\Debug\netcoreapp3.1\ItlaTwitter.pdb
 C:\Users\User\Desktop\ItlaTwitter\ItlaTwitter\obj\Debug\netcoreapp3.1\ItlaTwitter.genruntimeconfig.cache
-C:\Users\User\Desktop\ItlaTwitter\ItlaTwitter\obj\Debug\netcoreapp3.1\Razor\Views\Login\Logins.cshtml.g.cs
+C:\Users\User\Desktop\ItlaTwitter\ItlaTwitter\obj\Debug\netcoreapp3.1\Razor\Views\Amigos\Index.cshtml.g.cs
+C:\Users\User\Desktop\ItlaTwitter\ItlaTwitter\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs
