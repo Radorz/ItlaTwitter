@@ -172,7 +172,7 @@ namespace ItlaTwitter.Controllers
             user.Contraseña = PasswordEncryption(Convert.ToString( nuevacontraseña));
             _context.Usuarios.Update(user);
             await _context.SaveChangesAsync();
-            var message = new Message(new string[] {user.Correo}, "Recuperacion de Cuenta", "Hemos sidos notificados que que has perdido tu contraseña para acceder a ITLA Twiiter \nEsta es tu nueva Contraseña" + user.Usuario+ ":\n" + nuevacontraseña); ;
+            var message = new Message(new string[] {user.Correo}, "Recuperacion de Cuenta", "Hemos sidos notificados que que has perdido tu contraseña para acceder a ITLA Twiiter \nEsta es tu nueva Contraseña " + user.Usuario.Trim()+ ":\n" + nuevacontraseña); ;
             await _iemailsender.SendMailAsync(message);
             
             return View();
